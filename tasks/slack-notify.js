@@ -43,5 +43,8 @@ function notifyRevDeployed(config) {
  * Prints current revision number used as a redis key
  */
 gulp.task('slack-notify', [], function() {
-  return notifyRevDeployed(getConfigFor('slack'));
+  var slackConfig = getConfigFor('slack');
+  if (slackConfig) {
+    return notifyRevDeployed(slackConfig);
+  }
 });

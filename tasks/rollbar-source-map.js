@@ -171,7 +171,10 @@ function uploadAppVersions(config, rev, callback) {
 }
 
 gulp.task('rollbar-source-map', function(callback) {
-  getRevision(function (rev) {
-    uploadAppVersions(getConfigFor('rollbar'), rev, callback);
-  });
+  var rollbarConfig = getConfigFor('rollbar');
+  if (rollbarConfig) {
+    getRevision(function (rev) {
+      uploadAppVersions(rollbarConfig, rev, callback);
+    });
+  }
 });
